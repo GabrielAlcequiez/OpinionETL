@@ -1,7 +1,6 @@
 ﻿namespace OpinionETL.Core.Interfaces
 {
-    public interface IClientImporter
+    public interface IClientImporter : IImporter
     {
-        Task<ImportResult> ImportAsync(CancellationToken ct = default);
     }
 }
