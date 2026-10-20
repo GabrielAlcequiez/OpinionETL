@@ -9,7 +9,7 @@ namespace OpinionETL.Data.Extraction.Csv.Mapping
         {
             Map(x => x.IdProducto).Name("IdProducto");
             Map(x => x.Nombre).Name("Nombre");
-            Map(x => x.Categoria).Name("Categoria");
+            Map(x => x.Categoria).Name("Categoría");
         }
     }
 }
