@@ -10,4 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpinionETL.Core\OpinionETL.Core.csproj" />
+    <ProjectReference Include="..\OpinionETL.Data\OpinionETL.Data.csproj" />
+  </ItemGroup>
 </Project>
