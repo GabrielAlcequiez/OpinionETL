@@ -4,10 +4,10 @@ using System.Globalization;
 
 namespace OpinionETL.Data.Extraction.Csv
 {
-public class CsvExtractor
+    public class CsvExtractor
     {
         public List<T> Extract<T, TMap>(string path)
-            where T : class 
+            where T : class
             where TMap : ClassMap<T>
         {
             using var reader = new StreamReader(path);
