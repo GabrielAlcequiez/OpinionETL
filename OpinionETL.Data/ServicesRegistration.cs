@@ -21,6 +21,7 @@ namespace OpinionETL.Data
             optionsLifetime: ServiceLifetime.Scoped);
 
             services.AddScoped<IClientImporter, ClientImporter>();
+            services.AddScoped<ICategoryImporter, CategoryImporter>();
         }
     }
 }

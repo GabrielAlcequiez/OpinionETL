@@ -28,7 +28,7 @@ namespace OpinionETL.Worker
                 using var scope = _scopeFactory.CreateScope();
 
                 var importer = scope.ServiceProvider
-                    .GetRequiredService<IClientImporter>();
+                    .GetRequiredService<ICategoryImporter>();
 
                 var result = await importer.ImportAsync(stoppingToken);
 
