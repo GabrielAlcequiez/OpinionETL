@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Project Path="OpinionETL.Core/OpinionETL.Core.csproj" />
+  <Project Path="OpinionETL.Data/OpinionETL.Data.csproj" />
+  <Project Path="OpinionETL.Worker/OpinionETL.Worker.csproj" />
+</Solution>
