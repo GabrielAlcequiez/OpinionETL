@@ -1,6 +1,6 @@
 ﻿namespace OpinionETL.Core.Models
 {
-    public class Data_Source
+    public class DataSource
     {
         public int ID { get; set; }
         public int ExternalID { get; set; }
