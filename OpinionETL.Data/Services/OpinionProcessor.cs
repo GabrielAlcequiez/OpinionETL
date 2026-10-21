@@ -5,7 +5,7 @@ using OpinionETL.Core.Models;
 using OpinionETL.Data.Context;
 using OpinionETL.Data.Helpers;
 
-namespace OpinionETL.Data.Importers;
+namespace OpinionETL.Data.Services;
 
 public class OpinionProcessor : IOpinionProcessor
 {

@@ -1,54 +1,48 @@
 using OpinionETL.Core.Interfaces;
-using OpinionETL.Data.Extraction.Csv;
-using OpinionETL.Data.Extraction.Csv.Mapping;
-using OpinionETL.Data.Extraction.Csv.Models;
 
-namespace OpinionETL.Worker
+namespace OpinionETL.Worker;
+
+public class Worker : BackgroundService
 {
-    public class Worker : BackgroundService
+    private readonly IServiceScopeFactory _scopeFactory;
+    private readonly ILogger<Worker> _logger;
+
+    public Worker(
+        IServiceScopeFactory scopeFactory,
+        ILogger<Worker> logger)
     {
-        private readonly IServiceScopeFactory _scopeFactory;
-        private readonly ILogger<Worker> _logger;
-        private readonly IHostApplicationLifetime _lifetime;
+        _scopeFactory = scopeFactory;
+        _logger = logger;
+    }
 
-        public Worker(
-            IServiceScopeFactory scopeFactory,
-            ILogger<Worker> logger,
-            IHostApplicationLifetime lifetime)
-        {
-            _scopeFactory = scopeFactory;
-            _logger = logger;
-            _lifetime = lifetime;
-        }
-        protected override async Task ExecuteAsync(
+    protected override async Task ExecuteAsync(
         CancellationToken stoppingToken)
+    {
+        try
         {
-            try
-            {
-                using var scope = _scopeFactory.CreateScope();
+            using var scope = _scopeFactory.CreateScope();
 
-                var importer = scope.ServiceProvider
-                    .GetRequiredService<ICategoryImporter>();
+            var pipeline = scope.ServiceProvider
+                .GetRequiredService<IEtlPipeline>();
 
-                var result = await importer.ImportAsync(stoppingToken);
+            await pipeline.ExecuteAsync(stoppingToken);
 
-                _logger.LogInformation(
-                    "Leídos: {Read}, Importados: {Imported}, Duplicados: {Duplicated}, Rechazados: {Rejected}",
-                    result.TotalRead,
-                    result.TotalImported,
-                    result.TotalDuplicated,
-                    result.TotalRejected);
-            }
-            catch (Exception ex) when (
-                ex is not OperationCanceledException ||
-                !stoppingToken.IsCancellationRequested)
-            {
-                _logger.LogError(ex, "Error al importar clientes");
-            }
-            finally
-            {
-                _lifetime.StopApplication();
-            }
+            _logger.LogInformation(
+                "Ejecución del Worker finalizada correctamente");
+        }
+        catch (OperationCanceledException)
+            when (stoppingToken.IsCancellationRequested)
+        {
+            _logger.LogInformation(
+                "Ejecución del Worker cancelada");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogCritical(
+                ex,
+                "El Worker terminó debido a un error");
+
+            throw;
         }
     }
 }

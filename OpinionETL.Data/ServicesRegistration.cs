@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OpinionETL.Core.Interfaces;
 using OpinionETL.Data.Context;
 using OpinionETL.Data.Importers;
+using OpinionETL.Data.Services;
 
 namespace OpinionETL.Data
 {
