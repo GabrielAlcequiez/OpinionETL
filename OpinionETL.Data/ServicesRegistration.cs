@@ -24,6 +24,7 @@ namespace OpinionETL.Data
             services.AddScoped<ICategoryImporter, CategoryImporter>();
             services.AddScoped<ISourceTypeImporter, SourceTypeImporter>();
             services.AddScoped<IClassificationImporter, ClassificationImporter>();
+            services.AddScoped<IProductImporter, ProductImporter>();
         }
     }
 }
