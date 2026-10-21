@@ -4,13 +4,13 @@
     {
         public int ID { get; set; }
         public string Comment { get; set; } = string.Empty;
-        public int? SatisfactionScore { get; set; }
+        public int? Satisfaction_Score { get; set; }
         public DateTime Date { get; set; }
-        public int? ClientId{ get; set; }
-        public int? ProductId { get; set; }
-        public int DataSourceId { get; set; }
-        public int ClassificationId { get; set; }
-        public int StageOpinionId { get; set; }
+        public int? Client_ID{ get; set; }
+        public int? Product_ID { get; set; }
+        public int Data_Source_ID { get; set; }
+        public int Classification_ID { get; set; }
+        public int Stage_Opinion_ID { get; set; }
 
     }
 }
