@@ -23,13 +23,7 @@ namespace OpinionETL.Data.Importers
             var extractor = new CsvExtractor();
             string dataPath = Path.Combine(AppContext.BaseDirectory, "data");
 
-            var result = new ImportResult()
-            {
-                TotalImported = 0,
-                TotalDuplicated = 0,
-                TotalRead = 0,
-                TotalRejected = 0
-            };
+            var result = new ImportResult();
 
             var existingSourceTypes = (await _context.Source_Type
                     .Select(x => x.Type)

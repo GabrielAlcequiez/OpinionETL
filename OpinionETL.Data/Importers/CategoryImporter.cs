@@ -35,13 +35,8 @@ namespace OpinionETL.Data.Importers
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
 
-            var result = new ImportResult()
-            {
-                TotalImported = 0,
-                TotalDuplicated = 0,
-                TotalRead = 0,
-                TotalRejected = 0
-            };
+            var result = new ImportResult();
+            
 
             var products = extractor.Extract<ProductCsvRow, ProductCsvMap>(Path.Combine(dataPath, "products.csv"));
 

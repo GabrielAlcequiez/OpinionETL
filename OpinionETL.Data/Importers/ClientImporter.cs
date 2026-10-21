@@ -24,13 +24,8 @@ namespace OpinionETL.Data.Importers
             var extractor = new CsvExtractor();
             string dataPath = Path.Combine(AppContext.BaseDirectory, "data");
 
-            var result = new ImportResult()
-            {
-                TotalImported = 0,
-                TotalDuplicated = 0,
-                TotalRead = 0,
-                TotalRejected = 0
-            };
+            var result = new ImportResult();
+      
 
             var clients = extractor.Extract<ClientCsvRow, ClientCsvMap>(Path.Combine(dataPath, "clients.csv"));
 
@@ -63,9 +58,6 @@ namespace OpinionETL.Data.Importers
                     result.TotalDuplicated++;
                     continue;
                 }
-
-               
-                    result.TotalImported++;
 
                 var entity = new Client()
                 {

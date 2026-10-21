@@ -30,13 +30,8 @@ namespace OpinionETL.Data.Importers
                   .Select(x => x.Trim())
                   .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            var result = new ImportResult()
-            {
-                TotalImported = 0,
-                TotalDuplicated = 0,
-                TotalRead = 0,
-                TotalRejected = 0
-            };
+            var result = new ImportResult();
+            
 
             // los saco de Survey porque acá estan ya definidos los 3 tipos, luego se podría implementar que se pudieran agregar
             // más tipos de clasificación desde un CSV, pero por ahora no es necesario
